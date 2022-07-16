@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CoreCurdApplicationWithRoleBased.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Category List..</h1>
+
+<p>
+    <a asp-action="Create">Create New Category</a>
+</p>
+<table class="table">
+    <thead style="background-color:cornflowerblue; border:thin; border-color:black">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+               Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+           
+            <td>
+                @if (item.ActiveOrNot == false)
+                {
+
+                    @Html.ActionLink("Activate", "Active", new { id = item.CategoryId }, new { @class = "btn btn-primary" }) }
+                else
+                {
+                    @Html.ActionLink("Deactivate", "Deactive", new { id = item.CategoryId }, new { @class = "btn btn-secondary" })} |
+                <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-success">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-danger">Delete</a>
+            </td>
+           
+            
+        </tr>
+}
+    </tbody>
+</table>

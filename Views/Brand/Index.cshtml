@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CoreCurdApplicationWithRoleBased.Models.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Brands List..</h1>
+
+<p>
+    <a asp-action="Create">Create New Brand</a>
+</p>
+<table class="table">
+    <thead style="background-color:cornflowerblue; border:thin; border-color:black">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.BrandId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </th>           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem=>item.BrandId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandName)
+            </td>           
+        </tr>
+}
+    </tbody>
+</table>
